@@ -5,8 +5,14 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=200)
     faculty = models.CharField(max_length=200)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 class Subject(models.Model):
     name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
 class Choice(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
@@ -29,4 +35,4 @@ class Choice(models.Model):
             return self.get_total_score()/self.total_voters_number
         else:
             return self.__getattribute__(attr)/self.total_voters_number
-        
+            
