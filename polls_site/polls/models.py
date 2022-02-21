@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import IntegerField
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=200)
@@ -23,12 +24,10 @@ class Choice(models.Model):
     total_friendliness = models.IntegerField(default=0)
     total_motivation = models.IntegerField(default=0)
     total_ease = models.IntegerField(default=0)
+    total_general = models.IntegerField(default=0)
 
     class Meta:
         unique_together = ('teacher', 'subject')
-
-    def get_total_score(self):
-        return self.total_voters_number + self.total_quality + self.total_motivation + self.total_ease
 
     def get_score(self, attr: str):
         if attr == 'total_score':

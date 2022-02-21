@@ -14,7 +14,7 @@ def results(request):
 
 def vote(request, subject_id):
     subject = get_object_or_404(Subject, pk=subject_id)
-    return render(request, 'polls/vote.html', {'subject': subject})
+    return render(request, 'polls/vote.html', {'subject': subject, 'range': range(1,11)})
 
-def recive_vote(request):
+def recieve_vote(request, subject_id):
     pass

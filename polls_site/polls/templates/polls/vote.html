@@ -7,11 +7,48 @@
     <title>Vote - {{ subject.name }}</title>
 </head>
 <body>
-    <h3>Wybierz prowadzącego:</h3>
-    <select name="teachers" id="teachers">
-        {% for teacher in subject.choice_set.all %}
-            <option value="teacher">{{ teacher }}</option>
+    <h2>Przedmiot: {{ subject.name }}</h2>
+    <form action="{% url 'polls:recieve_vote' subject.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <h3>Wybierz prowadzącego:</h3>
+        <select name="teachers" id="teachers">
+            {% for choice in subject.choice_set.all %}
+                <option value="choice">{{ choice.teacher }}</option>
+            {% endfor %}
+        </select>
+        <h4>Jakość nauczania: </h4>
+        {% for score in range %}
+            <input type="radio" name="quality_score" id="quality_score{{ score }}" value="{{ score }}">
+            <label for="quality_score{{ score }}">{{ score }}</label>
         {% endfor %}
-    </select>
+        
+        <h4>Przyjazne podejście: </h4>
+        {% for score in range %}
+            <input type="radio" name="friendliness_score" id="friendliness_score{{ score }}" value="{{ score }}">
+            <label for="friendliness_score{{ score }}">{{ score }}</label>
+        {% endfor %}
+        
+        <h4>Motywowanie do nauki: </h4>
+        {% for score in range %}
+            <input type="radio" name="motivation_score" id="motivation_score{{ score }}" value="{{ score }}">
+            <label for="motivation_score{{ score }}">{{ score }}</label>
+        {% endfor %}
+        
+        <h4>Łatwość zdania (więcej = łatwiej): </h4>
+        {% for score in range %}
+            <input type="radio" name="ease_score" id="ease_score{{ score }}" value="{{ score }}">
+            <label for="ease_score{{ score }}">{{ score }}</label>
+        {% endfor %}
+        
+        <h4>Ogólna ocena: </h4>
+        {% for score in range %}
+            <input type="radio" name="general_score" id="general_score{{ score }}" value="{{ score }}">
+            <label for="general_score{{ score }}">{{ score }}</label>
+        {% endfor %}
+        <br><br>
+        <input type="submit" value="Zagłosuj i przejdź dalej">
+    </fieldset>
+    </form>
 </body>
 </html>
