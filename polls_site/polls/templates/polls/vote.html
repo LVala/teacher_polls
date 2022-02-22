@@ -8,13 +8,14 @@
 </head>
 <body>
     <h2>Przedmiot: {{ subject.name }}</h2>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <form action="{% url 'polls:recieve_vote' subject.id %}" method="post">
     {% csrf_token %}
     <fieldset>
         <h3>Wybierz prowadzącego:</h3>
         <select name="teachers" id="teachers">
             {% for choice in subject.choice_set.all %}
-                <option value="choice">{{ choice.teacher }}</option>
+                <option value="{{ choice.teacher.id }}">{{ choice.teacher }}</option>
             {% endfor %}
         </select>
         <h4>Jakość nauczania: </h4>

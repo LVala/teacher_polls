@@ -34,4 +34,12 @@ class Choice(models.Model):
             return self.get_total_score()/self.total_voters_number
         else:
             return self.__getattribute__(attr)/self.total_voters_number
+
+    def __str__(self):
+        return f"""total_voters_number: {self.total_voters_number}
+        total_quality: {self.total_quality}
+        total_friendliness: {self.total_friendliness}
+        total_motivation: {self.total_motivation}
+        total_ease: {self.total_ease}
+        total_general: {self.total_general}"""
             
