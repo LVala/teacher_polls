@@ -41,12 +41,7 @@
             <input type="radio" name="ease_score" id="ease_score{{ score }}" value="{{ score }}">
             <label for="ease_score{{ score }}">{{ score }}</label>
         {% endfor %}
-        
-        <h4>Ogólna ocena: </h4>
-        {% for score in range %}
-            <input type="radio" name="general_score" id="general_score{{ score }}" value="{{ score }}">
-            <label for="general_score{{ score }}">{{ score }}</label>
-        {% endfor %}
+    
         <br><br>
         <input type="submit" value="Zagłosuj i przejdź dalej">
     </fieldset>

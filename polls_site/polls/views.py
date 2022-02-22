@@ -23,7 +23,6 @@ def recieve_vote(request, subject_id):
         selected_choice.total_friendliness += int(context['friendliness_score'])
         selected_choice.total_motivation += int(context['motivation_score'])
         selected_choice.total_ease += int(context['ease_score'])
-        selected_choice.total_general += int(context['general_score'])
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'polls/vote.html', {
             'subject': subject,
@@ -34,8 +33,11 @@ def recieve_vote(request, subject_id):
         selected_choice.total_voters_number += 1
         selected_choice.save()
 
+        # generate new plots for this subject
+        # (preferably asynchronously or on 2nd thread)
+
         remaining_subjects = Subject.objects.filter(pk__gt=int(subject_id)).order_by('id').all()
-        print(remaining_subjects)
+
         if remaining_subjects:
             return HttpResponseRedirect(reverse('polls:vote', args=(remaining_subjects[0].id,)))
         else:
