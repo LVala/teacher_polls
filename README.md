@@ -1,5 +1,5 @@
 # Teacher Polls
-### Web app conducting polls about college teachers in 5 different categories, collecting this information and presenting data in the form of pretty graphs
+### Web app for conducting polls about college teachers in 5 different categories, collecting this information and presenting the data in the form of pretty graphs
 ---
 Created using **Python**, **Django** and **Matplotlib**.
 

@@ -5,46 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote - {{ subject.name }}</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style_vote.css' %}">
 </head>
 <body>
-    <h2>Przedmiot: {{ subject.name }}</h2>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <form action="{% url 'polls:recieve_vote' subject.id %}" method="post">
-    {% csrf_token %}
-    <fieldset>
-        <h3>Wybierz prowadzącego:</h3>
-        <select name="teachers" id="teachers">
-            {% for choice in subject.choice_set.all %}
-                <option value="{{ choice.teacher.id }}">{{ choice.teacher }}</option>
-            {% endfor %}
-        </select>
-        <h4>Jakość nauczania: </h4>
-        {% for score in range %}
-            <input type="radio" name="quality_score" id="quality_score{{ score }}" value="{{ score }}">
-            <label for="quality_score{{ score }}">{{ score }}</label>
-        {% endfor %}
-        
-        <h4>Przyjazne podejście: </h4>
-        {% for score in range %}
-            <input type="radio" name="friendliness_score" id="friendliness_score{{ score }}" value="{{ score }}">
-            <label for="friendliness_score{{ score }}">{{ score }}</label>
-        {% endfor %}
-        
-        <h4>Motywowanie do nauki: </h4>
-        {% for score in range %}
-            <input type="radio" name="motivation_score" id="motivation_score{{ score }}" value="{{ score }}">
-            <label for="motivation_score{{ score }}">{{ score }}</label>
-        {% endfor %}
-        
-        <h4>Łatwość zdania (więcej = łatwiej): </h4>
-        {% for score in range %}
-            <input type="radio" name="ease_score" id="ease_score{{ score }}" value="{{ score }}">
-            <label for="ease_score{{ score }}">{{ score }}</label>
-        {% endfor %}
-    
-        <br><br>
-        <input type="submit" value="Zagłosuj i przejdź dalej">
-    </fieldset>
-    </form>
+    <div class="header">
+        <h2>Przedmiot: {{ subject.name }}</h2>
+    </div>
+    <div class="bottom_div">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <form action="{% url 'polls:recieve_vote' subject.id %}" method="post" class="input_field">
+        {% csrf_token %}
+        <fieldset class="field_set">
+            <div class="options">
+                <h3>Wybierz prowadzącego:</h3>
+                <div>
+                    <select name="teachers" id="teachers">
+                        {% for choice in subject.choice_set.all %}
+                            <option value="{{ choice.teacher.id }}">{{ choice.teacher }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="options">
+                <h4>Jakość nauczania: </h4>
+                <div class="radio">
+                    {% for score in range %}
+                        <input type="radio" name="quality_score" id="quality_score{{ score }}" value="{{ score }}">
+                        <label for="quality_score{{ score }}">{{ score }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="options">
+                <h4>Przyjazne podejście: </h4>
+                <div class="radio">
+                    {% for score in range %}
+                        <input type="radio" name="friendliness_score" id="friendliness_score{{ score }}" value="{{ score }}">
+                        <label for="friendliness_score{{ score }}">{{ score }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="options">
+                <h4>Motywowanie do nauki: </h4>
+                <div class="radio">
+                    {% for score in range %}
+                        <input type="radio" name="motivation_score" id="motivation_score{{ score }}" value="{{ score }}">
+                        <label for="motivation_score{{ score }}">{{ score }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="options">
+                <h4>Łatwość zdania (więcej = łatwiej): </h4>
+                <div class="radio">
+                    {% for score in range %}
+                        <input type="radio" name="ease_score" id="ease_score{{ score }}" value="{{ score }}">
+                        <label for="ease_score{{ score }}">{{ score }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="btn">
+                <input type="submit" value="Zagłosuj i przejdź dalej">
+            </div>
+        </fieldset>
+        </form>
+    </div>
 </body>
 </html>

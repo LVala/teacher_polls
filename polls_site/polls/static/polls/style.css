@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 600;
+    /* variables */
+    --color-bg: rgb(32, 32, 32);
+    --color-bg-alt: rgb(50, 50, 50);
+    --color-fg: rgb(200, 200, 200);
+}
+
+body {
+    background-color: var(--color-bg);
+    height: 100vh;
+    width: 100%;
+}

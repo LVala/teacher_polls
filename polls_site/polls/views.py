@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.cache import never_cache
 
 from .models import Subject, Choice
+from .utils.plotting import create_plot
 
 
 def index(request):
@@ -33,8 +35,8 @@ def recieve_vote(request, subject_id):
         selected_choice.total_voters_number += 1
         selected_choice.save()
 
-        # generate new plots for this subject
-        # (preferably asynchronously or on 2nd thread)
+        # update plot
+        create_plot(subject)
 
         remaining_subjects = Subject.objects.filter(pk__gt=int(subject_id)).order_by('id').all()
 
@@ -43,5 +45,6 @@ def recieve_vote(request, subject_id):
         else:
             return HttpResponseRedirect(reverse('polls:results'))
 
+@never_cache  # to prevent caching chart images, probably not the best solution
 def results(request):
     return render(request, 'polls/results.html', {'subjects': Subject.objects.all()})

@@ -1,0 +1,60 @@
+body {
+    color: var(--color-fg);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.header {
+    background-color: var(--color-bg-alt);
+    width: 100%;
+    height: 7ch;
+}
+
+.header h2 {
+    font-size: 3em;
+    margin: 2px 15px;
+    white-space: nowrap;
+}
+
+.field_set {
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px;
+}
+
+.input_field {
+    background-color: var(--color-bg-alt);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.btn {
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.radio {
+    display: flex;
+    gap:7px;
+}
+
+input[type="radio"] {
+    margin-top: 2px;
+    vertical-align: middle;
+}
+
+/* I think I'm overusing flex *, there's probably easier ways to to that/

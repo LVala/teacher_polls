@@ -1,0 +1,31 @@
+body {
+    overflow: hidden;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.link_btn {
+    background-color: var(--color-bg-alt);
+    width: 20ch;
+    height: 7ch;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.25s ease-out;
+}
+
+.link_btn:hover {
+    transform: translate(0, -10%);
+}
+
+.link_btn a {
+    text-decoration: none;
+    color: var(--color-fg);
+    font-size: 2em;
+}

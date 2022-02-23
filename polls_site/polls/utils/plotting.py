@@ -4,9 +4,12 @@ from datetime import datetime
 
 
 def create_plot(subject):
+    plt.ioff()
+    plt.style.use('seaborn-darkgrid')
+
     choices = subject.choice_set.all()
     teacher_labels = [f"{str(i.teacher)} ({i.total_voters_number})" for i in choices]
-    teacher_labels = [f"{i.split()[0][0]}. {i.split()[1]}" for i in teacher_labels]
+    teacher_labels = [f"{i.split()[0][0]}. {i.split()[1]} {i.split()[2]}" for i in teacher_labels]
 
     quality_values = [i.get_score('total_quality') for i in choices]
     friendliness_values = [i.get_score('total_friendliness') for i in choices]
@@ -32,7 +35,6 @@ def create_plot(subject):
     ax.legend(loc='upper right', mode='expand', ncol=5)
 
     for i in rects: ax.bar_label(i, fmt='')
-    
-    plt.style.use('seaborn-darkgrid')
 
-    plt.savefig(f".\polls\static\polls\images\{subject.id}_plot.png")
+    plt.savefig(f".\polls\static\polls\images\{subject.id}_plot.png")  # it propably would be better to keep the images in the database or at least not in static
+    plt.close()
