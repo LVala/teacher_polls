@@ -22,4 +22,3 @@ Created using **Python**, **Django** and **Matplotlib**.
   # inside teacher_polls/polls_site directory
   python manage.py createsupreuser
   ```
-  

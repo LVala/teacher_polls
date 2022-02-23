@@ -36,5 +36,6 @@ def create_plot(subject):
 
     for i in rects: ax.bar_label(i, fmt='')
 
-    plt.savefig(f".\polls\static\polls\images\{subject.id}_plot.png")  # it propably would be better to keep the images in the database or at least not in static
+    # it propably would be better to keep the images in the database or at least not in static
+    plt.savefig(f"./polls/static/polls/images/{subject.id}_plot.png")
     plt.close()
