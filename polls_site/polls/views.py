@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Subject, Choice
-
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
+
+from .models import Subject, Choice
 
 
 def index(request):
@@ -44,5 +44,4 @@ def recieve_vote(request, subject_id):
             return HttpResponseRedirect(reverse('polls:results'))
 
 def results(request):
-    response = "You're looking at the results of question"
-    return HttpResponse(response)
+    return render(request, 'polls/results.html', {'subjects': Subject.objects.all()})

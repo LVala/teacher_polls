@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyniki</title>
+</head>
+<body>
+    <h1>Wyniki</h1>
+    {% for subject in subjects %}
+    <img src="../../static/polls/images/{{ subject.id}}_plot.png" alt="{{ subject.id }}_plot.png">
+    {% endfor %}
+</body>
+</html>
